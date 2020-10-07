@@ -26,7 +26,8 @@ import android.app.Activity;
 import java.net.URL;
 import java.io.File;
 import java.io.IOException;
-import androidx.core.content.FileProvider;
+//import androidx.core.content.FileProvider;
+import android.support.v4.content.fileprovider
 import java.io.InputStream;
 
 import android.os.Build;
