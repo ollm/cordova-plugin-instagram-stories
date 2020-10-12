@@ -92,7 +92,11 @@
 
       // Assign background and sticker image assets and
       // attribution link URL to pasteboard
-      NSMutableDictionary *pasteboardItemsDictionary = [@{ @"com.instagram.sharedSticker.backgroundImage" : backgroundImage } mutableCopy];
+      //NSMutableDictionary *pasteboardItemsDictionary = [@{ @"com.instagram.sharedSticker.backgroundImage" : backgroundImage } mutableCopy];
+      NSMutableDictionary *pasteboardItemsDictionary = @[@{@"com.instagram.sharedSticker.backgroundImage" : backgroundImage,
+      @"com.instagram.sharedSticker.stickerImage" : "",
+      @"com.instagram.sharedSticker.contentURL" : ""} mutableCopy];
+        
       if (stickerImage) {
         pasteboardItemsDictionary[@"com.instagram.sharedSticker.stickerImage"] = stickerImage;
       }
