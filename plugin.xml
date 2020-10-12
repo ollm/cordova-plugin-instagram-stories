@@ -5,7 +5,10 @@
     version="1.0.0">
     <name>Cordova Instagram Stories</name>
     <description></description>
-
+    
+    <!-- iOS Info.plist whitelist -->
+    <dependency id="cordova-plugin-edit-plist-file" url="https://github.com/achinita/cordova-plugin-edit-plist-file" />
+    
     <!-- android -->
     <platform name="android">
       <js-module src="www/igstory.js" name="igstory">
