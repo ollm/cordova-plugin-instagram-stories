@@ -206,7 +206,7 @@ public class IGStory extends CordovaPlugin {
       File backgroundMediaFile = File.createTempFile("instagramBackground", fileExtension, parentDir);
       Log.i(TAG, "made it here");
 
-      saveImage(backgroundMediaData, backgroundImageFile);
+      saveImage(backgroundMediaData, backgroundMediaFile);
 
       Log.i(TAG, "savedImage");
 
@@ -214,7 +214,7 @@ public class IGStory extends CordovaPlugin {
       intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       
       FileProvider FileProvider = new FileProvider();
-      Uri backgroundUri = FileProvider.getUriForFile(this.cordova.getActivity().getBaseContext(), this.cordova.getActivity().getBaseContext().getPackageName() + ".provider", backgroundImageFile);
+      Uri backgroundUri = FileProvider.getUriForFile(this.cordova.getActivity().getBaseContext(), this.cordova.getActivity().getBaseContext().getPackageName() + ".provider", backgroundMediaFile);
 
       Log.i(TAG, "got backgroundUri: " + backgroundUri);
 
