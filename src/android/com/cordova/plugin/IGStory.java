@@ -53,8 +53,9 @@ public class IGStory extends CordovaPlugin {
         String attributionLinkUrl = args.getString(2);
         String backgroundTopColor = args.getString(3);
         String backgroundBottomColor = args.getString(4);
+        Boolean isVideo = args.getBoolean(5);
 
-        shareToStory(backgroundImageUrl, stickerAssetUrl, attributionLinkUrl, backgroundTopColor, backgroundBottomColor, callbackContext);
+        shareToStory(backgroundImageUrl, stickerAssetUrl, attributionLinkUrl, backgroundTopColor, backgroundBottomColor, isVideo, callbackContext);
       } else if (action.equals("shareImageToStory")) {
         String backgroundImageData = args.getString(0);
 
@@ -69,7 +70,7 @@ public class IGStory extends CordovaPlugin {
     return true;
   }
 
-  private void shareToStory(String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, String backgroundTopColor, String backgroundBottomColor, CallbackContext callbackContext) {
+  private void shareToStory(String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, String backgroundTopColor, String backgroundBottomColor, Boolean isVideo, CallbackContext callbackContext) {
 
     if (!backgroundTopColor.isEmpty() && !backgroundBottomColor.isEmpty()) {
       try {
@@ -80,7 +81,9 @@ public class IGStory extends CordovaPlugin {
         URL u = new URL(stickerImageUrl);
         saveImage(u, stickerImageFile);
 
-        String type = "image/*";
+        String type = "";
+        if (isVideo) type = "video/*";
+        else type = "image/*";
 
         Intent intent = new Intent("com.instagram.share.ADD_TO_STORY");
         intent.setType(type);
