@@ -120,20 +120,6 @@ public class IGStory extends CordovaPlugin {
 
   }
 
-  private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
-
-    boolean found = true;
-
-    try {
-
-      packageManager.getPackageInfo(packageName, 0);
-    } catch (PackageManager.NameNotFoundException e) {
-
-      found = false;
-    }
-
-    return found;
-  }
   private void shareToStory(String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, String backgroundTopColor, String backgroundBottomColor, Boolean isVideo, CallbackContext callbackContext) {
 
     if (!backgroundTopColor.isEmpty() && !backgroundBottomColor.isEmpty()) {
