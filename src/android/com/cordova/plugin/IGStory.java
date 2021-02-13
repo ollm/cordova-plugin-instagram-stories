@@ -206,7 +206,7 @@ public class IGStory extends CordovaPlugin {
       File backgroundMediaFile = File.createTempFile("instagramBackground", fileExtension, parentDir);
       Log.i(TAG, "made it here");
 
-      saveImage(backgroundImageData, backgroundImageFile);
+      saveImage(backgroundMediaData, backgroundImageFile);
 
       Log.i(TAG, "savedImage");
 
