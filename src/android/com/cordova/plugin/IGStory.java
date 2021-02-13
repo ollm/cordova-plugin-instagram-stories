@@ -193,9 +193,9 @@ public class IGStory extends CordovaPlugin {
     try {
       String fileExtension = "";
       String mimeType = "";
-      if (backgroundMediaData.contains("video/webm")) {
-        fileExtension = ".webm";
-        mimeType = "video/webm";
+      if (backgroundMediaData.contains("video/mp4")) {
+        fileExtension = ".mp4";
+        mimeType = "video/mp4";
       }
       else {
         fileExtension = ".jpg";
