@@ -60,6 +60,10 @@ public class IGStory extends CordovaPlugin {
         String backgroundImageData = args.getString(0);
 
         shareImageToStory(backgroundImageData, callbackContext);
+      } else if (action.equals("shareMediaToStory")) {
+        String backgroundMediaData = args.getString(0);
+
+        shareMediaToStory(backgroundMediaData, callbackContext);
       } else {
         callbackContext.error("ig not installed");
       }
@@ -69,7 +73,67 @@ public class IGStory extends CordovaPlugin {
 
     return true;
   }
+  private void shareMediaToStory(String backgroundMediaData, CallbackContext callbackContext) {
 
+    try {
+      String fileExtension = "";
+      String mimeType = "";
+      if (backgroundMediaData.contains("video/webm")) {
+        fileExtension = ".webm";
+        mimeType = "video/webm";
+      }
+      else {
+        fileExtension = ".jpg";
+        mimeType = "image/jpeg";
+      }
+      
+      File parentDir = this.webView.getContext().getExternalFilesDir(null);
+      File backgroundMediaFile = File.createTempFile("instagramBackground", fileExtension, parentDir);
+      Log.i(TAG, "made it here");
+
+      saveImage(backgroundImageData, backgroundImageFile);
+
+      Log.i(TAG, "savedImage");
+
+      Intent intent = new Intent("com.instagram.share.ADD_TO_STORY");
+      intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      
+      FileProvider FileProvider = new FileProvider();
+      Uri backgroundUri = FileProvider.getUriForFile(this.cordova.getActivity().getBaseContext(), this.cordova.getActivity().getBaseContext().getPackageName() + ".provider", backgroundImageFile);
+
+      Log.i(TAG, "got backgroundUri: " + backgroundUri);
+
+      intent.setDataAndType(backgroundUri, mimeType);
+
+      Log.i(TAG, "instantiating activity");
+      // Instantiate activity and verify it will resolve implicit intent
+      Activity activity = this.cordova.getActivity();
+      activity.grantUriPermission("com.instagram.android", backgroundUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+      activity.startActivityForResult(intent, 0);
+      callbackContext.success("shared");
+    } catch (Exception e) {
+      Log.e(TAG, "error in shareImageToStory");
+      Log.e(TAG, e.getMessage());
+      callbackContext.error(e.getMessage());
+    }
+
+  }
+
+  private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+
+    boolean found = true;
+
+    try {
+
+      packageManager.getPackageInfo(packageName, 0);
+    } catch (PackageManager.NameNotFoundException e) {
+
+      found = false;
+    }
+
+    return found;
+  }
   private void shareToStory(String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, String backgroundTopColor, String backgroundBottomColor, Boolean isVideo, CallbackContext callbackContext) {
 
     if (!backgroundTopColor.isEmpty() && !backgroundBottomColor.isEmpty()) {
