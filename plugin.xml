@@ -11,6 +11,7 @@
     
     <!-- android -->
     <platform name="android">
+       <preference name="DUMMYDROID" default="/" />
       <js-module src="www/igstory.js" name="igstory">
         <runs/>
         <clobbers target="IGStory" />
