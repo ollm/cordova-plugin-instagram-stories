@@ -11,11 +11,12 @@
 - (void)shareToStory:(CDVInvokedUrlCommand *)command {
     self.callbackId = command.callbackId;
 
-    NSString* backgroundImage = [command.arguments objectAtIndex:0];
-    NSString* stickerImage = [command.arguments objectAtIndex:1];
-    NSString* attributionURL = [command.arguments objectAtIndex:2];
-    NSString* backgroundTopColor = [command.arguments objectAtIndex:3];
-    NSString* backgroundBottomColor = [command.arguments objectAtIndex:4];
+    NSString* appId = [command.arguments objectAtIndex:0];
+    NSString* backgroundImage = [command.arguments objectAtIndex:1];
+    NSString* stickerImage = [command.arguments objectAtIndex:2];
+    NSString* attributionURL = [command.arguments objectAtIndex:3];
+    NSString* backgroundTopColor = [command.arguments objectAtIndex:4];
+    NSString* backgroundBottomColor = [command.arguments objectAtIndex:5];
 
     NSLog(@"This is backgroundURL: %@", backgroundImage);
     NSLog(@"This is stickerURL: %@", stickerImage);
@@ -81,7 +82,7 @@
 
 }
 
-- (void)shareBackgroundAndStickerImage:(NSData *)backgroundImage stickerImage:(NSData *)stickerImage attributionURL:(NSString *)attributionURL commandId:(NSString *)command  {
+- (void)shareBackgroundAndStickerImage:(NSData *)backgroundImage stickerImage:(NSData *)stickerImage attributionURL:(NSString *)attributionURL appId:(NSString *)appId commandId:(NSString *)command  {
 
     // Verify app can open custom URL scheme. If able,
     // assign assets to pasteboard, open scheme.
@@ -93,6 +94,8 @@
       // Assign background and sticker image assets and
       // attribution link URL to pasteboard
       NSMutableDictionary *pasteboardItemsDictionary = [@{ @"com.instagram.sharedSticker.backgroundImage" : backgroundImage } mutableCopy];
+
+      pasteboardItemsDictionary[@"com.instagram.sharedSticker.appId"] = appId;
         
       if (stickerImage) {
         pasteboardItemsDictionary[@"com.instagram.sharedSticker.stickerImage"] = stickerImage;

@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="cordova-plugin-instagram-stories"
-    version="1.0.0">
+    version="2.0.0">
     <name>Cordova Instagram Stories</name>
     <description></description>
     
