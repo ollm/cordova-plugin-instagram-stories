@@ -3,6 +3,8 @@ Instagram Stories Sharing for Cordova
 ======
 
 ## Fork changes
+Both Android and iOS now work with latest Meta changes regarding requiring appID
+
 Made to work with Cordova Android v11 and adjusted code to make background and sticker sharing work.
 Background image URL is expected to be JPEG
 
