@@ -78,11 +78,19 @@ public class IGStory extends CordovaPlugin {
       Uri stickerUri = null;
       Uri backgroundUri = null;
 
-      URL stickerURL = new URL(stickerImageUrl);
-      saveImage(stickerURL, stickerImageFile);
+      if(stickerImageUrl.indexOf(";base64,") != -1) {
+        saveImage(stickerImageUrl, stickerImageFile);
+      } else {
+        URL stickerURL = new URL(stickerImageUrl);
+        saveImage(stickerURL, stickerImageFile);
+      }
 
-      URL backgroundURL = new URL(backgroundImageUrl);
-      saveImage(backgroundURL, backgroundImageFile);
+      if(backgroundImageUrl.indexOf(";base64,") != -1) {
+        saveImage(backgroundImageUrl, backgroundImageFile);
+      } else {
+        URL backgroundURL = new URL(backgroundImageUrl);
+        saveImage(backgroundURL, backgroundImageFile);
+      }
 
       // Instantiate implicit intent with ADD_TO_STORY action,
       // background asset, sticker asset, and attribution link

@@ -24,9 +24,7 @@
     NSURL *stickerImageURL = [NSURL URLWithString:stickerImage];
 
     NSError *stickerImageError;
-    NSData *stickerData = [NSData dataWithContentsOfURL:stickerImageURL
-                                                options:NSDataReadingUncached
-                                                  error:&stickerImageError];
+    NSData *stickerData = [self getImageData:stickerImageURL];
 
     if (stickerData && !stickerImageError) {
       [self shareColorAndStickerImage:appID
@@ -49,16 +47,11 @@
     NSURL *backgroundImageURL = [NSURL URLWithString:backgroundImage];
 
     NSError *backgroundImageError;
-    NSData *imageDataBackground =
-        [NSData dataWithContentsOfURL:backgroundImageURL
-                              options:NSDataReadingUncached
-                                error:&backgroundImageError];
+    NSData *imageDataBackground = [self getImageData:backgroundImageURL];
 
     if (imageDataBackground && !backgroundImageError) {
       NSError *stickerImageError;
-      NSData *stickerData = [NSData dataWithContentsOfURL:stickerImageURL
-                                                  options:NSDataReadingUncached
-                                                    error:&stickerImageError];
+      NSData *stickerData = [self getImageData:stickerImageURL];
 
       if (stickerData && !stickerImageError) {
         [self shareBackgroundAndStickerImage:appID
