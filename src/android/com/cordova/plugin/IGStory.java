@@ -51,8 +51,10 @@ public class IGStory extends CordovaPlugin {
         String backgroundImageUrl = args.getString(1);
         String stickerAssetUrl = args.getString(2);
         String attributionLinkUrl = args.getString(3);
+        String backgroundTopColor = args.getString(4);
+        String backgroundBottomColor = args.getString(5);
 
-        shareToStory(appId, backgroundImageUrl, stickerAssetUrl, attributionLinkUrl, callbackContext);
+        shareToStory(appId, backgroundImageUrl, stickerAssetUrl, attributionLinkUrl, backgroundTopColor, backgroundBottomColor, callbackContext);
       } else if (action.equals("shareImageToStory")) {
         String backgroundImageData = args.getString(1);
 
@@ -69,7 +71,7 @@ public class IGStory extends CordovaPlugin {
     return true;
   }
 
-  private void shareToStory(String appId, String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, CallbackContext callbackContext) {
+  private void shareToStory(String appId, String backgroundImageUrl, String stickerImageUrl, String attributionLinkUrl, String backgroundTopColor, String backgroundBottomColor, CallbackContext callbackContext) {
 
     try {
       File parentDir = this.webView.getContext().getExternalFilesDir(null);
@@ -106,6 +108,9 @@ public class IGStory extends CordovaPlugin {
       intent.putExtra("source_application", appId);
       intent.putExtra("interactive_asset_uri", stickerUri);
       intent.putExtra("content_url", attributionLinkUrl);
+
+      if(!backgroundTopColor.isEmpty()) intent.putExtra("top_background_color", backgroundTopColor);
+      if(!backgroundBottomColor.isEmpty()) intent.putExtra("bottom_background_color", backgroundBottomColor);
 
       // Instantiate activity and verify it will resolve implicit intent
       Activity activity = this.cordova.getActivity();
