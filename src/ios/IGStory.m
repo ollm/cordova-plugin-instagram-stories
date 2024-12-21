@@ -43,15 +43,13 @@
     }
 
   } else {
-    NSURL *stickerImageURL = [NSURL URLWithString:stickerImage];
-    NSURL *backgroundImageURL = [NSURL URLWithString:backgroundImage];
 
     NSError *backgroundImageError;
-    NSData *imageDataBackground = [self getImageData:backgroundImageURL];
+    NSData *imageDataBackground = [self getImageData:backgroundImage];
 
     if (imageDataBackground && !backgroundImageError) {
       NSError *stickerImageError;
-      NSData *stickerData = [self getImageData:stickerImageURL];
+      NSData *stickerData = [self getImageData:stickerImage];
 
       if (stickerData && !stickerImageError) {
         [self shareBackgroundAndStickerImage:appID
