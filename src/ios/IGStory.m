@@ -20,7 +20,7 @@
   NSLog(@"This is backgroundURL: %@", backgroundImage);
   NSLog(@"This is stickerURL: %@", stickerImage);
 
-  if ([backgroundTopColor length] != 0 && [backgroundBottomColor length] != 0) {
+  if (backgroundTopColor != nil && [backgroundTopColor length] != 0 && backgroundBottomColor != nil && [backgroundBottomColor length] != 0) {
     NSURL *stickerImageURL = [NSURL URLWithString:stickerImage];
 
     NSError *stickerImageError;
